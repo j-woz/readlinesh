@@ -1,0 +1,37 @@
+
+CFLAGS = -g -Wall -I .
+
+all: bin/readline
+
+HEADERS = src/readlinesh.h
+SRCS = src/main.c src/readlinesh.c
+OBJS = $(patsubst %.c,%.o,$(SRCS))
+
+# Support GNU DESTDIR for Debian, etc.
+# Cf. http://www.gnu.org/prep/standards/html_node/DESTDIR.html
+ifeq ($(DESTDIR),)
+  INSTALL_PREFIX  = @prefix@
+else
+  INSTALL_PREFIX  = $(DESTDIR)
+endif
+
+-include dist.mk
+-include docs/docs.mk
+
+bin/readline: $(OBJS) bin
+	gcc -o $(@) $(OBJS) -l readline
+
+%.o: %.c $(HEADERS)
+	gcc -c $(CFLAGS) -o $(@) $(<)
+
+install: $(INSTALL_PREFIX)/bin/readline
+
+$(INSTALL_PREFIX)/bin bin:
+	mkdir -pv $(@)
+
+$(INSTALL_PREFIX)/bin/readline: bin/readline $(INSTALL_PREFIX)/bin
+	cp -uv $(<) $(@)
+
+clean:
+	rm -fv bin/readline
+	rm -fv src/*.o

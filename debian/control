@@ -1,0 +1,14 @@
+Source: readlinesh
+Section: utils
+Priority: optional
+Maintainer: Justin M Wozniak <wozniak@mcs.anl.gov>
+Build-Depends: debhelper (>= 9), autotools-dev
+Standards-Version: 3.9.6
+Homepage: http://readlinesh.sourceforge.net/index.html
+
+Package: readlinesh
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Shell interface to readline
+ Enhances shell scripting by allowing for readline interaction
+ from shell scripts.  Supports history.
