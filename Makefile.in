@@ -35,3 +35,8 @@ $(INSTALL_PREFIX)/bin/readline: bin/readline $(INSTALL_PREFIX)/bin
 clean:
 	rm -fv bin/readline
 	rm -fv src/*.o
+
+distclean: clean
+	rm -fvr autom4te.cache/ config.* configure
+	rm -fvr bin/
+	rm Makefile # Bye!
