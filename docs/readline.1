@@ -1,13 +1,13 @@
 '\" t
 .\"     Title: readlinesh
-.\"    Author: [FIXME: author] [see http://docbook.sf.net/el/author]
-.\" Generator: DocBook XSL Stylesheets v1.78.1 <http://docbook.sf.net/>
-.\"      Date: 12/05/2015
+.\"    Author: [see the "AUTHOR" section]
+.\" Generator: DocBook XSL Stylesheets v1.79.1 <http://docbook.sf.net/>
+.\"      Date: 10/18/2018
 .\"    Manual: \ \&
 .\"    Source: \ \&
 .\"  Language: English
 .\"
-.TH "READLINESH" "1" "12/05/2015" "\ \&" "\ \&"
+.TH "READLINESH" "1" "10/18/2018" "\ \&" "\ \&"
 .\" -----------------------------------------------------------------
 .\" * Define some portability stuff
 .\" -----------------------------------------------------------------
@@ -55,7 +55,23 @@ Use this prompt\&. Remember to escape characters special to the shell and spaces
 .RS 4
 Use this history file\&. The default is ~/\&.readlinesh\-history \&.
 .RE
+.SH "OPERATION"
+.sp
+readline simply prompts the user for a single line of input, writes it to the readline history file \fIhistory\fR, and writes it to the \fIdestination\fR in plain text\&.
+.sp
+On SIGINT (Ctrl\-C), readline handles the signal and writes the current readline buffer to history\&. This is intended for cases in which the user cancels the shell script calling readline, but desires to quickly restart\&.
+.sp
+To prevent writing to history, clear the line and provide the EOF character (Ctrl\-D)\&. The keystroke shortcut for this is: Ctrl\-A Ctrl\-K Ctrl\-D, that is, move to home column, clear the line, and provide EOF\&.
 .SH "EXAMPLE"
 .sp
-Consider a "fast" revision control commit shell function that accepts the commit message in an interactive (readline) prompt instead of launching the editor\&. The benefits of this are: \&. not clearing the screen \&. speed if the editor startup is slow \&. history!
+Consider a fast revision control commit shell function that accepts the commit message in an interactive (readline) prompt instead of launching the editor\&. The benefits of this are: 1) not clearing the screen 2) speed if the editor startup is slow 3) history!
+.sp
+Such a function would look like:
+.sp
+c() { MESSAGE_FILE=$( mktemp ) readline \-d $MESSAGE_FILE \-p "Enter message: " \-H ~/\&.commit\-msgs svn commit \-F $MESSAGE_FILE $* rm $MESSAGE_FILE }
+.sp
+If the user cancels the function with Ctrl\-C, the message is still accessible in history\&. So if you realize that you do not want to commit, you can cancel, make a fix, and commit again, retrieving your partially completed commit message from history\&.
 .SH "SEE ALSO"
+.SH "AUTHOR"
+.sp
+Justin M Wozniak Bug reports and comments to sourceforge\&.net

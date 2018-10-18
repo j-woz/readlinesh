@@ -5,6 +5,6 @@ DEB_FILES =          \
 	control      \
 	copyright    \
 	docs         \
-	readline.1 \
-	readlinesh.manpages \
+	readline.1   \
+	readline.manpages \
 	rules

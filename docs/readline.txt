@@ -1,0 +1,81 @@
+
+= READLINESH(1)
+
+== READLINESH
+
+readlinesh - shell interface for readline editing and history
+
+== SYNOPSIS
+
+readline -h
+readline [-d destination] [-p prompt] [-H history]
+
+== DESCRIPTION
+
+The readline command reads one line from the user, then writes that
+line to the given _destination_.  The user is prompted with _prompt_
+and has access to the history in _history_.
+
+-h:: Print help message.
+-d:: Write output to this file.  The default is stdout, which is
+     useless (except for debugging).
+-p:: Use this prompt.  Remember to escape characters special to the
+     shell and spaces.  The default is "> ".
+-H:: Use this history file.  The default is ~/.readlinesh-history .
+
+== OPERATION
+
+readline simply prompts the user for a single line of input, writes it
+to the readline history file _history_, and writes it to the
+_destination_ in plain text.
+
+On SIGINT (Ctrl-C), readline handles the signal and writes the current
+readline buffer to history.  This is intended for cases in which the
+user cancels the shell script calling readline, but desires to quickly
+restart.
+
+To prevent writing to history, clear the line and provide the EOF
+character (Ctrl-D).  The keystroke shortcut for this is: Ctrl-A Ctrl-K
+Ctrl-D, that is, move to home column, clear the line, and provide
+EOF.
+
+== EXAMPLE
+
+Consider a fast revision control commit shell function that accepts
+the commit message in an interactive (readline) prompt instead of
+launching the editor.  The benefits of this are:
+ 1) not clearing the screen
+ 2) speed if the editor startup is slow
+ 3) history!
+
+Such a function would look like:
+
+c() {
+    MESSAGE_FILE=$( mktemp )
+    readline -d $MESSAGE_FILE -p "Enter message: " -H ~/.commit-msgs
+    svn commit -F $MESSAGE_FILE $*
+    rm $MESSAGE_FILE
+}
+
+If the user cancels the function with Ctrl-C, the message is still
+accessible in history.  So if you realize that you do not want to
+commit, you can cancel, make a fix, and commit again, retrieving your
+partially completed commit message from history.
+
+== SEE ALSO
+
+== AUTHOR
+
+Justin M Wozniak
+Bug reports and comments to sourceforge.net
+
+:man source:   AsciiDoc
+:man version:  1.0
+:man manual:   readlinesh Manual
+
+////
+Local Variables:
+mode: doc
+eval: (auto-fill-mode 1)
+End:
+////
