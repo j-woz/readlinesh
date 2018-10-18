@@ -25,10 +25,11 @@ static char* usage = NL
   " -p <prompt>       -- The prompt (default \"> \")               " NL
   NL
   "The line is written to history even on Ctrl-C."    NL
-  "Use Ctrl-D to cancel and skip writing to history." NL
+  "Use Ctrl-D on a blank line  to cancel and skip "
+  "writing to history."                               NL
   "See the man page for more details."                NL
   NL
-  "\t Author: Justin M Wozniak <wozniak@mcs.anl.gov>" NL
+  "\t Author: Justin M Wozniak <woz@anl.gov>"         NL
   ;
 
 static void

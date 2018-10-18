@@ -27,7 +27,7 @@ readlinesh usage: readline <options...>
  -p <prompt>       -- The prompt (default "> ")
 
 The line is written to history even on Ctrl-C.
-Use Ctrl-D to cancel and skip writing to history.
+Use Ctrl-D on a blank line to cancel and skip writing to history.
 ----
 
 == Git-based example
@@ -57,7 +57,8 @@ $ git status
 $ gm myfile.c
 Enter commit message: This is my change to myfile.c
 ----
-You have full-featured line editing and history without losing your view of the previous output.
+
+You have full-featured line editing and history without losing your view of the previous output.  If you cancel +gm+ with Ctrl+C or Ctrl+D it will exit cleanly without running +git commit+.
 
 == Installation
 
