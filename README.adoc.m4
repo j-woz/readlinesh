@@ -50,7 +50,7 @@ You have full-featured line editing and history without losing your view of the 
 
 == Installation
 
-Be sure you have the libreadline and libhistory development packages for your system.
+Be sure you have the libreadline and libhistory development packages for your system. On Debian and Ubuntu this is APT package +libreadline-dev+.  Then do:
 
 ----
 $ git clone https://github.com/jmjwozniak/readlinesh.git
