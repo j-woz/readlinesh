@@ -32,6 +32,9 @@ $(INSTALL_PREFIX)/bin bin:
 $(INSTALL_PREFIX)/bin/readline: bin/readline $(INSTALL_PREFIX)/bin
 	cp -uv $(<) $(@)
 
+README.adoc: README.adoc.m4
+	m4 -P $(<) > $(@)
+
 clean:
 	rm -fv bin/readline
 	rm -fv src/*.o

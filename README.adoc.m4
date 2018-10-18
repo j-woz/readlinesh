@@ -34,19 +34,7 @@ Use Ctrl-D to cancel and skip writing to history.
 
 Here is an example of using +readline+ to input your Git commit messages with history and without loading your editor.  Put this shell function in your shell startup scripts:
 
-----
-gm()
-# Git-Commit with Message
-{
-  local MESSAGE_FILE=$( mktemp )
-  readline -d $MESSAGE_FILE \
-           -p "Enter commit message: " \
-           -H ~/.git-history \
-    || return 1
-  git commit ${*} --file=$MESSAGE_FILE
-  rm $MESSAGE_FILE
-}
-----
+----m4_include(examples/git-commit.sh)----
 
 Then you can do:
 ----
