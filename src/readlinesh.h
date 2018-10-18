@@ -1,6 +1,5 @@
 
-#ifndef READLINESH_H
-#define READLINESH_H
+#pragma once
 
 #include <stdbool.h>
 
@@ -25,5 +24,3 @@ bool readlinesh(readlinesh_params* params,
                 char** errors);
 
 void readlinesh_abort(char* errors);
-
-#endif
