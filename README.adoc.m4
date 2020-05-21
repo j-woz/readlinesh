@@ -55,6 +55,7 @@ Be sure you have the libreadline and libhistory development packages for your sy
 ----
 $ git clone https://github.com/jmjwozniak/readlinesh.git
 $ cd readlinesh
+$ ./autogen.sh
 $ ./configure --prefix=$HOME/readlinesh
 $ make install
 # Test:
