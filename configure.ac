@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.68])
-AC_INIT([readlinesh], [1.0], [wozniak@mcs.anl.gov])
+AC_INIT([readlinesh], [1.0], [woz@anl.gov])
 AC_CONFIG_SRCDIR([src/readlinesh.h])
 
 m4_include([m4/ax_lib_readline.m4])
