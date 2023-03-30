@@ -1,5 +1,5 @@
 
-CFLAGS = -g -Wall -I .
+CFLAGS = @CFLAGS@ -g -Wall -I .
 
 all: bin/readline
 
@@ -19,7 +19,7 @@ endif
 -include docs/docs.mk
 
 bin/readline: $(OBJS) bin
-	gcc -o $(@) $(OBJS) -l readline
+	gcc -o $(@) $(OBJS) -l readline $(LDFLAGS) $(LIBS)
 
 %.o: %.c $(HEADERS)
 	gcc -c $(CFLAGS) -o $(@) $(<)
@@ -30,7 +30,7 @@ $(INSTALL_PREFIX)/bin bin:
 	mkdir -pv $(@)
 
 $(INSTALL_PREFIX)/bin/readline: bin/readline $(INSTALL_PREFIX)/bin
-	cp -uv $(<) $(@)
+	cp -v $(<) $(@)
 
 README.adoc: README.adoc.m4
 	m4 -P $(<) > $(@)
