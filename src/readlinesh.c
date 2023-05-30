@@ -1,5 +1,6 @@
 
 #define _GNU_SOURCE // for asprintf()
+#include <assert.h>
 #include <getopt.h>
 #include <signal.h>
 #include <stdio.h>
@@ -136,7 +137,10 @@ setup_history(const readlinesh_params* params, char** errors)
   bool result = ensure_history_exists(params->history);
   if (!result)
   {
-    asprintf(errors, "could not open history: %s", params->history);
+    int count = asprintf(errors,
+                         "could not open history: %s",
+                         params->history);
+    assert(count > 0);
     return false;
   }
 
@@ -182,7 +186,8 @@ setup_defaults(readlinesh_params*  defaults,
   if (p->history == NULL)
   {
     char* home = getenv("HOME");
-    asprintf(&p->history, "%s/.readlinesh-history", home);
+    int count = asprintf(&p->history, "%s/.readlinesh-history", home);
+    assert(count > 0);
   }
 }
 
@@ -210,7 +215,9 @@ write_string(const char* file, const char* string, char** errors)
   FILE* f = fopen(file, "w");
   if (f == NULL)
   {
-    asprintf(errors, "Could not open for write: %s", file);
+    int count = asprintf(errors,
+                         "Could not open for write: %s", file);
+    assert(count > 0);
     return false;
   }
   fprintf(f, "%s\n", string);
