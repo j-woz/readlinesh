@@ -27,7 +27,7 @@ static char* usage = NL
   " -p <prompt>       -- The prompt (default \"> \")               " NL
   NL
   "The line is written to history even on Ctrl-C."    NL
-  "Use Ctrl-D on a blank line  to cancel and skip "
+  "Use Ctrl-D on a blank line to cancel and skip "
   "writing to history."                               NL
   "See the man page for more details."                NL
   NL
