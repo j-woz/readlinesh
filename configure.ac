@@ -12,8 +12,8 @@ AC_PROG_CC
 
 # Checks for libraries.
 AX_LIB_READLINE()
-if [[ ${ax_cv_lib_readline} == "no" ]] || \
-   [[ ${ax_cv_lib_readline_history}  == "no" ]]
+if [[ "${ax_cv_lib_readline:-no}" == "no" ]] || \
+   [[ "${ax_cv_lib_readline_history:-no}"  == "no" ]]
 then
     AC_MSG_ERROR([You must have the readline and history development packages!])
 fi
