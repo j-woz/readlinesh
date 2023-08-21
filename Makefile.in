@@ -1,5 +1,5 @@
 
-CFLAGS = @CFLAGS@ -g -Wall -I .
+CFLAGS = @CFLAGS@ -g -Wall -I . ${CPPFLAGS}
 
 all: bin/readline
 
@@ -18,8 +18,11 @@ endif
 -include dist.mk
 -include docs/docs.mk
 
+LIBS += @LIBS@
+# ^ This should contain -l readline
+
 bin/readline: $(OBJS) bin
-	gcc -o $(@) $(OBJS) -l readline $(LDFLAGS) $(LIBS)
+	gcc -o $(@) $(OBJS) $(LDFLAGS) $(LIBS)
 
 %.o: %.c $(HEADERS)
 	gcc -c $(CFLAGS) -o $(@) $(<)
