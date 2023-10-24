@@ -80,6 +80,8 @@ If you have libreadline/libhistory in a non-standard location, such as a from-so
 
 ==== Anaconda
 
+This pattern works for Linux or Mac.
+
 ----
 $ C=$HOME/path/to/conda"
 $ export CFLAGS="-I$C/include"
