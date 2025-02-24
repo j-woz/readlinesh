@@ -100,3 +100,5 @@ $ export LDFLAGS="-L$C/lib"
 $ export LIBS="-lhistory"
 $ ./configure --prefix=...
 $ make install
+----
+
