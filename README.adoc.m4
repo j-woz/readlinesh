@@ -88,3 +88,8 @@ $ export LDFLAGS="-L$C/lib"
 $ export LIBS="-lhistory"
 $ ./configure --prefix=...
 $ make install
+----
+
+m4_dnl Local Variables:
+m4_dnl mode: text;
+m4_dnl End:
