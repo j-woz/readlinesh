@@ -74,7 +74,7 @@ $ make install
 $ $HOME/readlinesh/bin/readline
 ----
 
-=== Non-standard libreadline location
+=== Non-standard libreadline locations
 
 If you have libreadline/libhistory in a non-standard location, such as a from-source installation or an Anaconda environment, use something like:
 
@@ -100,4 +100,3 @@ $ export LDFLAGS="-L$C/lib"
 $ export LIBS="-lhistory"
 $ ./configure --prefix=...
 $ make install
-----

@@ -61,3 +61,30 @@ $ make install
 # Test:
 $ $HOME/readlinesh/bin/readline
 ----
+
+=== Non-standard libreadline locations
+
+If you have libreadline/libhistory in a non-standard location, such as a from-source installation or an Anaconda environment, use something like:
+
+==== Anaconda
+
+This pattern works for Linux or Mac.
+
+----
+$ C=$HOME/path/to/conda"
+$ export CFLAGS="-I$C/include"
+$ export LDFLAGS="-L$C/lib -Wl,-rpath -Wl,$C/lib"
+$ export LIBS="-lhistory"
+$ ./configure --prefix=...
+$ make install
+----
+
+==== Mac Homebrew
+
+----
+$ C=/usr/local/opt/readline
+$ export CFLAGS="-I$C/include"
+$ export LDFLAGS="-L$C/lib"
+$ export LIBS="-lhistory"
+$ ./configure --prefix=...
+$ make install
