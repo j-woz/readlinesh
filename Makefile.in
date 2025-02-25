@@ -1,4 +1,6 @@
 
+# Default to compiler found by ./configure:
+CC ?= @CC@
 CPPFLAGS = @CPPFLAGS@
 CFLAGS = @CFLAGS@ -g -Wall -I . $(CPPFLAGS)
 
@@ -23,10 +25,10 @@ LIBS += @LIBS@
 # ^ This should contain -l readline
 
 bin/readline: $(OBJS) bin
-	gcc -o $(@) $(OBJS) $(LDFLAGS) $(LIBS)
+	$(CC) -o $(@) $(OBJS) $(LDFLAGS) $(LIBS)
 
 %.o: %.c $(HEADERS)
-	gcc -c $(CFLAGS) -o $(@) $(<)
+	$(CC) -c $(CFLAGS) -o $(@) $(<)
 
 install: $(INSTALL_PREFIX)/bin/readline
 
