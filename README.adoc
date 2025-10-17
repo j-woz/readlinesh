@@ -74,6 +74,12 @@ $ make install
 $ $HOME/readlinesh/bin/readline
 ----
 
+=== Dependencies
+
+==== Anaconda
+
+* `readline`
+
 === Non-standard libreadline locations
 
 If you have libreadline/libhistory in a non-standard location, such as a from-source installation or an Anaconda environment, use something like:
@@ -85,8 +91,7 @@ This pattern works for Linux or Mac.
 ----
 $ C=$HOME/path/to/conda"
 $ export CFLAGS="-I$C/include"
-$ export LDFLAGS="-L$C/lib -Wl,-rpath -Wl,$C/lib"
-$ export LIBS="-lhistory"
+$ export LIBS="-L$C/lib -Wl,-rpath -Wl,$C/lib -lhistory"
 $ ./configure --prefix=...
 $ make install
 ----
@@ -101,4 +106,3 @@ $ export LIBS="-lhistory"
 $ ./configure --prefix=...
 $ make install
 ----
-
