@@ -96,6 +96,12 @@ $ ./configure --prefix=...
 $ make install
 ----
 
+You can automate this with:
+
+----
+$ source ./setup-conda.sh
+----
+
 ==== Mac Homebrew
 
 ----
